@@ -1,0 +1,2 @@
+export const GET_GOODS_LIST = "GET_GOODS_LIST"
+export const GET_LOADING = "GET_LOADING"

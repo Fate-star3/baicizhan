@@ -1,0 +1,2 @@
+export const GET_HOMEINFO = "GET_HOMEINFO"
+export const GET_LOADING = "GET_LOADING"
