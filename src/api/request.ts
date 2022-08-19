@@ -12,5 +12,5 @@ export const getCartDetailRequest =
 
 export const getCartListRequest =
     () => Promise.resolve({
-        data:JSON.parse(window.sessionStorage.getItem('data') as string)
+        data:JSON.parse(window.localStorage.getItem('data') as string)
     })

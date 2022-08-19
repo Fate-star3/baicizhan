@@ -2,23 +2,26 @@ import styled from 'styled-components'
 import { px2rem } from '@/assets/global-style'
 
 export const HomeWordsWrapper = styled.div`
+
 .home-word {
+width: ${px2rem(380)};
+margin: 0 auto;
 margin-top:${px2rem(75)};
 border-radius:${px2rem(10)};
-
 .word {
-    background-color: #fff;
-    height:${px2rem(116)};
+  width: 100%;
+  height:${px2rem(116)};
 }
 .word-hd {
-  width: ${px2rem(383.5)};
-  /* width: 100%; */
+  width: 100%;
+  background-color: #fff;
   height: 100%;
+
   
 }
 .word-content {
   display: flex;
-  width: ${px2rem(381)};
+  width: 100%;
   height: ${px2rem(133)};
   box-sizing: border-box;
 
@@ -123,8 +126,9 @@ img {
 /* 今日计划 */
 .plan {
     border-top: ${px2rem(1)} solid #ccc;
-    width: ${px2rem(383)};
+    width: ${px2rem(380)};
   height: ${px2rem(280)};
+  margin: 0 auto;
 }
 .plan-container {
   width: 100%;

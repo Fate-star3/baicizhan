@@ -11,6 +11,8 @@ import { Button, Popup } from 'antd-mobile'
 import { AddOutline, MinusOutline } from 'antd-mobile-icons'
 import { px2rem } from '@/assets/global-style'
 import { Link } from 'react-router-dom'
+import { lazyload } from '@/utils'
+import loadingPic from '@/assets/images/cartDetails/loading.gif'
 
 interface CartDetailProps {
   loading: boolean;
@@ -26,12 +28,20 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
   // console.log(cartDetail);
-  console.log(singleCart);
+  // console.log(singleCart);
 
 
   useEffect(() => {
     getCartDetailDispatch()
+
   }, [])
+  useEffect(() => {
+    window.addEventListener('scroll',function(){
+      lazyload(".goods-introduce img")
+  
+    })
+  }, [])
+  
 
   // cartDetail.length>0 && cartDetail[0].num == JSON.parse(window.sessionStorage.getItem('datails') as string)[0].num
   //   ? JSON.parse(window.sessionStorage.getItem('datails') as string)
@@ -106,7 +116,7 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                 <div className="wrap">
                   <div className='sell'>
                     <span className='left'>{item.sell}</span>
-                    <span className='right'>{item.number}件</span>
+                    <span className='right'>{item.number - item.num}件</span>
                   </div>
                   <div className="collect">
                     <div className="header">
@@ -179,11 +189,11 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
             </div>
 
             <div className="goods-introduce">
-              <img src="/src/assets/images/cartDetails/introduce.jpg" alt="" />
-              <img src="/src/assets/images/cartDetails/introduce1.jpg" alt="" />
-              <img src="/src/assets/images/cartDetails/introduce2.jpg" alt="" />
-              <img src="/src/assets/images/cartDetails/introduce3.jpg" alt="" />
-              <img src="/src/assets/images/cartDetails/introduce4.jpg" alt="" />
+              <img data-src="/src/assets/images/cartDetails/introduce.jpg"  src={loadingPic} alt="" />
+              <img data-src="/src/assets/images/cartDetails/introduce1.jpg" src={loadingPic} alt="" />
+              <img data-src="/src/assets/images/cartDetails/introduce2.jpg" src={loadingPic} alt="" />
+              <img data-src="/src/assets/images/cartDetails/introduce3.jpg" src={loadingPic} alt="" />
+              <img data-src="/src/assets/images/cartDetails/introduce4.jpg" src={loadingPic} alt="" />
             </div>
             <div className="goods-footer">
               <div className="footer" >

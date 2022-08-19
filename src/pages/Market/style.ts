@@ -151,7 +151,7 @@ export const MarketWrapper = styled.div`
 
     .market-goods {
         margin-top: ${px2rem(350)};
-        margin-bottom: ${px2rem(50)};
+        /* margin-bottom: ${px2rem(10)}; */
 
         position:relative;
         width: 100%;

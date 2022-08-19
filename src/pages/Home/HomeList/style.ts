@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import { px2rem } from '@/assets/global-style'
 
 export const HomeListWrapper = styled.div`
-    width: 100%;
    .list {
     display:flex;
-    width: 100%;
+    width: ${px2rem(380)};
     height:${px2rem(100)};
+    margin: 0 auto;
     align-items: center;
     justify-content:space-between;
         a {

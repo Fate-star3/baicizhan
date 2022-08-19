@@ -47,13 +47,13 @@ const Cart: React.FC<CartProps> = (props) => {
     // console.log(data);
     // console.log(cartList);
     // console.log(checkAll);
-    data == JSON.parse(window.sessionStorage.getItem('data') as string)
-    ? JSON.parse(window.sessionStorage.getItem('data') as string)
-    : data && window.sessionStorage.setItem('data', JSON.stringify(data))
+    data == JSON.parse(window.localStorage.getItem('data') as string)
+    ? JSON.parse(window.localStorage.getItem('data') as string)
+    : data && window.localStorage.setItem('data', JSON.stringify(data))
 
-    // if (cartList != JSON.parse(window.sessionStorage.getItem('data') as string)) {
+    // if (cartList != JSON.parse(window.localStorage.getItem('data') as string)) {
 
-    //     window.sessionStorage.setItem('data', JSON.stringify(cartList))
+    //     window.localStorage.setItem('data', JSON.stringify(cartList))
        
     // } 
   

@@ -6,8 +6,10 @@ import { Dispatch } from 'redux'
 import Swiper from 'swiper'
 import { actionCreators } from './store/index'
 import { rootState } from '@/store'
-
-
+import { lazyload } from '@/utils'
+import loadingPic from '@/assets/images/cartDetails/loading.gif'
+import { InfiniteScroll, List } from 'antd-mobile'
+import { mockRequest } from './data'
 interface MarketProps {
     loading: boolean;
     goodsList: any[];
@@ -27,7 +29,15 @@ const Market: React.FC<MarketProps> = (props) => {
     }
     useEffect(() => {
         getGoodsListDispatch()
+       
     }, [])
+    const [data = goodsList, setData] = useState<any[]>([])
+    const [hasMore, setHasMore] = useState(true)
+    async function loadMore() {
+      const append = await mockRequest()
+      setData(val => [...val, ...append])
+      setHasMore(append.length > 0)
+    }
     useEffect(() => {
         window.addEventListener('scroll', function () {
             let height = window.innerHeight / 2
@@ -40,6 +50,8 @@ const Market: React.FC<MarketProps> = (props) => {
                 setToTop('none')
             }
         })
+        lazyload(".list-content-box img")
+        lazyload(".container img")
 
     }, [toTop])
 
@@ -148,10 +160,10 @@ const Market: React.FC<MarketProps> = (props) => {
                     </div>
                     <div className="test-bd">
                         <main className='container'>
-                            <Link to='#' className='pic'><img src="/src/assets/images/market/test1.jpg" alt="" /></Link>
-                            <Link to='#' className='pic'><img src="/src/assets/images/market/test2.jpg" alt="" /></Link>
-                            <Link to='#' className='pic'><img src="/src/assets/images/market/test3.jpg" alt="" /></Link>
-                            <Link to='#' className='pic'><img src="/src/assets/images/market/test4.jpg" alt="" /></Link>
+                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test1.jpg" src={loadingPic} alt="" /></Link>
+                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test2.jpg" src={loadingPic} alt="" /></Link>
+                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test3.jpg" src={loadingPic} alt="" /></Link>
+                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test4.jpg" src={loadingPic} alt="" /></Link>
                         </main>
                     </div>
                 </div>
@@ -159,7 +171,7 @@ const Market: React.FC<MarketProps> = (props) => {
                     <div className="mask"></div>
                     <ul className='goods-list'>
                         {
-                            goodsList.map((item, index) => {
+                            data.map((item, index) => {
                                 return <div
                                     className='list'
                                     key={index + item.price}
@@ -167,7 +179,7 @@ const Market: React.FC<MarketProps> = (props) => {
                                 >
                                     <div className="list-content">
                                         <div className="list-content-box">
-                                            <img src={"/src/assets/images/market/" + item.imageSrc} alt="" />
+                                            <img data-src={"/src/assets/images/market/" + item.imageSrc} src={loadingPic} alt="" />
                                             <p className="list-content-title">{item.title}</p>
                                             <p className="list-content-text">{item.text}</p>
                                             <div className="list-content-ft">
@@ -186,21 +198,27 @@ const Market: React.FC<MarketProps> = (props) => {
                     </ul>
 
                 </div>
-
+                <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />       
                 <div className="back_top" onClick={backTop} style={{ display: toTop }}>
                     <i className="iconfont icon-shangjiantou"></i>
                 </div>
                 <div className="cart-fix" onClick={() => navigate('/cart')} >
 
                     {
-                        window.sessionStorage.getItem('data') ?
+                        window.localStorage.getItem('data') ?
                             <div className="cart-content-icon cart-content-iconv2">
-                                {JSON.parse(window.sessionStorage.getItem('data') as string).length}
+                                {JSON.parse(window.localStorage.getItem('data') as string).length}
                             </div>
                             : ""
                     }
                     <i className="iconfont icon-gouwuche1"></i>
                 </div>
+                {/* <List>
+        {data.map((item, index) => (
+          <List.Item key={index}>{item}</List.Item>
+        ))}
+      </List> */}
+                
             </div>
 
         </MarketWrapper>

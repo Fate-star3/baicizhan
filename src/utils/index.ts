@@ -1,4 +1,4 @@
-import React from "react";
+import lodash from 'lodash';
 
 /**
  * @author  张三
@@ -7,7 +7,7 @@ import React from "react";
  * @return boolean 
  */
 export const isPathPartlyExisted = (path: string) => {
-    const arr = ['/cartDetails','/cart' ];
+    const arr = ['/cartDetails', '/cart'];
     let pathRes = path.split('/')
     if (pathRes[1] && arr.indexOf('/' + pathRes[1]) != -1) return true;
     return false
@@ -62,6 +62,34 @@ export const isPathPartlyExisted = (path: string) => {
     // return false
 }
 
+
+export const lazyload = (str: string) => {
+    let imgLists= document.querySelectorAll(str)
+    let length = imgLists.length
+    let timer: any
+
+    let imgLazyLoad = () => {
+        if (timer) return
+        return timer = setTimeout(() => {
+            for (let i = 0; i < length; i++) {
+
+                let rect = imgLists[i].getBoundingClientRect()
+
+                // 当图片刚出现，才把它加载出来 
+                if (rect.top < window.innerHeight) {
+                    // console.log(rect.top);
+                    // console.log(window.innerHeight);
+                    // 已经加载过的图片 就要移除
+                    imgLists[i].src = imgLists[i].dataset.src
+                }
+            }
+            timer = null
+        },100)
+
+    }
+    imgLazyLoad()
+    window.addEventListener('scroll', imgLazyLoad)
+}
 
 
 export const debounce = (func: { apply: (arg1: any, arg2: any) => void }, delay: number | undefined) => {
