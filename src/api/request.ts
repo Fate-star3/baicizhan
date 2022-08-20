@@ -1,5 +1,5 @@
 import { axiosInstance } from "./config";
-import axios from 'axios'
+
 
 export const getHomeInfoRequest =
     () => axiosInstance.get('http://127.0.0.1:3030/info')

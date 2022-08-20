@@ -18,6 +18,7 @@ interface CartProps {
     cartList: any[];
     price: number;
     checkAll: boolean;
+    cartInfo: any[];
     // singleCart: any[];
     getCartListDispatch: () => void;
     changeGoodsNumDispatch: (data: any) => void;
@@ -29,14 +30,15 @@ interface CartProps {
 const Cart: React.FC<CartProps> = (props) => {
     const navigate = useNavigate()
     const location = useLocation()
-    const data = location.state
+    // const data = location.state
+
     const {
         loading,
         cartList,
         price,
-        checkAll
-    }
-        = props
+        checkAll,
+        cartInfo
+    } = props
     const {
         getCartListDispatch,
         changeGoodsNumDispatch,
@@ -44,20 +46,13 @@ const Cart: React.FC<CartProps> = (props) => {
         changeAllGoodsDispatch,
         clearGoodsDispatch
     } = props
+    const data = cartInfo
     // console.log(data);
     // console.log(cartList);
     // console.log(checkAll);
     data == JSON.parse(window.localStorage.getItem('data') as string)
-    ? JSON.parse(window.localStorage.getItem('data') as string)
-    : data && window.localStorage.setItem('data', JSON.stringify(data))
-
-    // if (cartList != JSON.parse(window.localStorage.getItem('data') as string)) {
-
-    //     window.localStorage.setItem('data', JSON.stringify(cartList))
-       
-    // } 
-  
-
+        ? JSON.parse(window.localStorage.getItem('data') as string)
+        : data && window.localStorage.setItem('data', JSON.stringify(data))
 
     useEffect(() => {
         getCartListDispatch()
@@ -127,7 +122,7 @@ const Cart: React.FC<CartProps> = (props) => {
                         </div>
                     </div>
                     {
-                        cartList.map((item, index) => {
+                        cartList.map((item) => {
                             return <div className="cart-list" key={item.id}>
                                 <SwipeAction
                                     rightActions={[
@@ -216,6 +211,7 @@ const mapStateToProps = (state: rootState) => {
         price: arr.reduce((pre, curr) => pre += curr, 0),
         checkAll: state.cart.CartList
             .filter((item: { check: any }) => item.check).length == state.cart.CartList.length,
+        cartInfo: state.goods.SingleCart
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {

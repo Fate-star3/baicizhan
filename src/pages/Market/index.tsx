@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo } from 'react'
-import { MarketWrapper } from './style'
+import { MarketWrapper,EnterLoading } from './style'
 import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
@@ -7,6 +7,7 @@ import Swiper from 'swiper'
 import { actionCreators } from './store/index'
 import { rootState } from '@/store'
 import { lazyload } from '@/utils'
+import Loading from '@/components/common/loading/index'
 import loadingPic from '@/assets/images/cartDetails/loading.gif'
 import { InfiniteScroll, List } from 'antd-mobile'
 import { mockRequest } from './data'
@@ -20,24 +21,27 @@ interface MarketProps {
 const Market: React.FC<MarketProps> = (props) => {
     const { loading, goodsList } = props
     const { getGoodsListDispatch } = props
-    // console.log(goodsList);
-
     const navigate = useNavigate()
     const [toTop, setToTop] = useState('none')
+    const [data = goodsList, setData] = useState<any[]>([])
+    const [hasMore, setHasMore] = useState(true)
+
+    async function loadMore() {
+        const append = await mockRequest()
+        setData(val => [...val, ...append])
+        setHasMore(append.length > 0)
+    }
     const backTop = () => {
         window.scrollTo(0, 0)
     }
+    window.addEventListener('scroll', function () {
+        lazyload(".list-content-box img")
+
+    })
     useEffect(() => {
         getGoodsListDispatch()
-       
     }, [])
-    const [data = goodsList, setData] = useState<any[]>([])
-    const [hasMore, setHasMore] = useState(true)
-    async function loadMore() {
-      const append = await mockRequest()
-      setData(val => [...val, ...append])
-      setHasMore(append.length > 0)
-    }
+
     useEffect(() => {
         window.addEventListener('scroll', function () {
             let height = window.innerHeight / 2
@@ -50,9 +54,6 @@ const Market: React.FC<MarketProps> = (props) => {
                 setToTop('none')
             }
         })
-        lazyload(".list-content-box img")
-        lazyload(".container img")
-
     }, [toTop])
 
     useEffect(() => {
@@ -160,10 +161,10 @@ const Market: React.FC<MarketProps> = (props) => {
                     </div>
                     <div className="test-bd">
                         <main className='container'>
-                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test1.jpg" src={loadingPic} alt="" /></Link>
-                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test2.jpg" src={loadingPic} alt="" /></Link>
-                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test3.jpg" src={loadingPic} alt="" /></Link>
-                            <Link to='#' className='pic'><img data-src="/src/assets/images/market/test4.jpg" src={loadingPic} alt="" /></Link>
+                            <Link to='#' className='pic'><img src="/src/assets/images/market/test1.jpg" alt="" /></Link>
+                            <Link to='#' className='pic'><img src="/src/assets/images/market/test2.jpg" alt="" /></Link>
+                            <Link to='#' className='pic'><img src="/src/assets/images/market/test3.jpg" alt="" /></Link>
+                            <Link to='#' className='pic'><img src="/src/assets/images/market/test4.jpg" alt="" /></Link>
                         </main>
                     </div>
                 </div>
@@ -171,7 +172,7 @@ const Market: React.FC<MarketProps> = (props) => {
                     <div className="mask"></div>
                     <ul className='goods-list'>
                         {
-                            data.map((item, index) => {
+                           data.map((item, index) => {
                                 return <div
                                     className='list'
                                     key={index + item.price}
@@ -179,7 +180,7 @@ const Market: React.FC<MarketProps> = (props) => {
                                 >
                                     <div className="list-content">
                                         <div className="list-content-box">
-                                            <img data-src={"/src/assets/images/market/" + item.imageSrc} src={loadingPic} alt="" />
+                                            <img data-src={"/src/assets/images/market/" + item.imageSrc} alt="" />
                                             <p className="list-content-title">{item.title}</p>
                                             <p className="list-content-text">{item.text}</p>
                                             <div className="list-content-ft">
@@ -198,7 +199,7 @@ const Market: React.FC<MarketProps> = (props) => {
                     </ul>
 
                 </div>
-                <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />       
+                <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
                 <div className="back_top" onClick={backTop} style={{ display: toTop }}>
                     <i className="iconfont icon-shangjiantou"></i>
                 </div>
@@ -213,14 +214,13 @@ const Market: React.FC<MarketProps> = (props) => {
                     }
                     <i className="iconfont icon-gouwuche1"></i>
                 </div>
-                {/* <List>
-        {data.map((item, index) => (
-          <List.Item key={index}>{item}</List.Item>
-        ))}
-      </List> */}
-                
             </div>
-
+            {
+                loading ?
+                    <EnterLoading>
+                        <Loading></Loading>
+                    </EnterLoading> : null
+            }
         </MarketWrapper>
     )
 }
