@@ -29,7 +29,7 @@ interface CartProps {
 
 const Cart: React.FC<CartProps> = (props) => {
     const navigate = useNavigate()
-    const location = useLocation()
+    // const location = useLocation()
     // const data = location.state
 
     const {
@@ -46,13 +46,23 @@ const Cart: React.FC<CartProps> = (props) => {
         changeAllGoodsDispatch,
         clearGoodsDispatch
     } = props
-    const data = cartInfo
+    let data = cartList
     // console.log(data);
     // console.log(cartList);
     // console.log(checkAll);
-    data == JSON.parse(window.localStorage.getItem('data') as string)
-        ? JSON.parse(window.localStorage.getItem('data') as string)
-        : data && window.localStorage.setItem('data', JSON.stringify(data))
+    // console.log(cartInfo);
+
+    if (cartInfo.length !== cartList.length) {
+        cartInfo == JSON.parse(window.localStorage.getItem('data') as string)
+            ? data = JSON.parse(window.localStorage.getItem('data') as string)
+            : cartInfo && window.localStorage.setItem('data', JSON.stringify(cartInfo))
+    } else {
+        cartInfo == JSON.parse(window.localStorage.getItem('data') as string)
+        ? data = JSON.parse(window.localStorage.getItem('data') as string)
+        : cartInfo && window.localStorage.setItem('data', JSON.stringify(cartList))
+    }
+
+
 
     useEffect(() => {
         getCartListDispatch()
@@ -80,13 +90,24 @@ const Cart: React.FC<CartProps> = (props) => {
     const clear = (id: number) => {
         clearGoodsDispatch(id)
     }
+    const Persistence = () => {
+        if (cartList !== cartInfo) {
+            window.localStorage.setItem('data', JSON.stringify(cartList))
 
+        } else {
+            JSON.parse(window.localStorage.getItem('data') as string)
+            console.log(11);
+
+        }
+
+        navigate(-1)
+    }
     return (
         <Wrapper>
 
             <div className="cart" >
                 <div className="cart-back">
-                    <i className='iconfont icon-youjiantou3' onClick={() => navigate(-1)}></i>
+                    <i className='iconfont icon-youjiantou3' onClick={() => Persistence()}></i>
                     <span>购物车</span>
                 </div>
                 <div className="cart-content">
@@ -122,7 +143,7 @@ const Cart: React.FC<CartProps> = (props) => {
                         </div>
                     </div>
                     {
-                        cartList.map((item) => {
+                        data.map((item) => {
                             return <div className="cart-list" key={item.id}>
                                 <SwipeAction
                                     rightActions={[

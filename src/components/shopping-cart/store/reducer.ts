@@ -15,7 +15,7 @@ const reducer = (state = stateDefault, action: AnyAction) => {
             let list = action.data
             list.map((item: any, index: any) => {
                 item.check = false;
-                item.id = index
+                item.id = 100 + index
             })
             return Object.assign({}, state, { CartList: list })
 

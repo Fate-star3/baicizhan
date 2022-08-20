@@ -215,7 +215,7 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                     <Link to='/cart' state={singleCart}>
                       <i className='iconfont icon-gouwuche'></i>
                       <span>{item.cart}</span>
-                      {item.num > 0 && <div className="cart-content-icon cart-content-iconv2">{item.num}</div>}
+                      {singleCart.length > 0 && <div className="cart-content-icon cart-content-iconv2">{singleCart.length}</div>}
                     </Link>
                   </div>
                 </div>
@@ -296,7 +296,7 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                             marginBottom: `${px2rem(15)}`
                           }}>数量</h1>
                           {
-                            item.num > 0 ?
+                            singleCart.length> 0 ?
                               <MinusOutline
                                 onClick={(e) => changeGoodNum(e, 'reduce', item.id)}
                               />
@@ -313,7 +313,7 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                             backgroundColor: '#eee',
                             margin: ` 0 ${px2rem(10)}`
                           }}>
-                            {item.num}
+                            {singleCart.length}
                           </span>
                           <AddOutline
                             onClick={(e) => changeGoodNum(e, 'add', item.id)}
