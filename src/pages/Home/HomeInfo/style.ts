@@ -6,7 +6,7 @@ margin: ${px2rem(-10)} auto ${px2rem(85)};
 
 .list {
     background-color: #fff;
-    width: ${px2rem(380)};
+    width: ${px2rem(360)};
     height: ${px2rem(77)};
     justify-content: space-between;
     margin:${px2rem(20)} auto;

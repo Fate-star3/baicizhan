@@ -11,7 +11,7 @@ import { Button, Popup } from 'antd-mobile'
 import { AddOutline, MinusOutline } from 'antd-mobile-icons'
 import { px2rem } from '@/assets/global-style'
 import { Link } from 'react-router-dom'
-import { lazyload } from '@/utils'
+import { lazyload, throttle } from '@/utils'
 import loadingPic from '@/assets/images/cartDetails/loading.gif'
 
 interface CartDetailProps {
@@ -35,17 +35,8 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
     getCartDetailDispatch()
 
   }, [])
-  useEffect(() => {
-    window.addEventListener('scroll',function(){
-      lazyload(".goods-introduce img")
-  
-    })
-  }, [])
-  
+  window.onscroll = throttle(lazyload.bind(null, ".goods-introduce img"), 500)
 
-  // cartDetail.length>0 && cartDetail[0].num == JSON.parse(window.sessionStorage.getItem('datails') as string)[0].num
-  //   ? JSON.parse(window.sessionStorage.getItem('datails') as string)
-  //   : cartDetail && window.sessionStorage.setItem('datails', JSON.stringify(cartDetail))
 
   useEffect(() => {
     // 轮播图挂载
@@ -189,7 +180,7 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
             </div>
 
             <div className="goods-introduce">
-              <img data-src="/src/assets/images/cartDetails/introduce.jpg"  src={loadingPic} alt="" />
+              <img data-src="/src/assets/images/cartDetails/introduce.jpg" src={loadingPic} alt="" />
               <img data-src="/src/assets/images/cartDetails/introduce1.jpg" src={loadingPic} alt="" />
               <img data-src="/src/assets/images/cartDetails/introduce2.jpg" src={loadingPic} alt="" />
               <img data-src="/src/assets/images/cartDetails/introduce3.jpg" src={loadingPic} alt="" />
@@ -279,12 +270,16 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                           <span style={{
                             padding: `${px2rem(5)} ${px2rem(10)}`,
                             backgroundColor: '#eee',
-                            marginRight: `${px2rem(10)}`
+                            marginRight: `${px2rem(10)}`,
+                            fontSize: `${px2rem(12)}`,
+
                           }}>四级大全套：词汇+真题+听力</span>
                           <span
                             style={{
                               padding: `${px2rem(5)} ${px2rem(10)}`,
-                              backgroundColor: '#eee'
+                              backgroundColor: '#eee',
+                            fontSize: `${px2rem(12)}`,
+
                             }}>四级高分词汇</span>
                         </div>
                         <div style={{
@@ -296,31 +291,42 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                             marginBottom: `${px2rem(15)}`
                           }}>数量</h1>
                           {
-                            singleCart.length> 0 ?
+                            singleCart.length > 0 ?
                               <MinusOutline
                                 onClick={(e) => changeGoodNum(e, 'reduce', item.id)}
+                                style={{  
+                                  fontSize: `${px2rem(12)}`,
+                                }}
                               />
                               :
                               <MinusOutline
                                 onClick={(e) => changeGoodNum(e, 'reduce', item.id)}
                                 style={{
-                                  pointerEvents: "none"
+                                  pointerEvents: "none",
+                                  fontSize: `${px2rem(12)}`,
+
                                 }}
                               />
                           }
                           <span style={{
                             padding: `${px2rem(5)} ${px2rem(10)}`,
                             backgroundColor: '#eee',
-                            margin: ` 0 ${px2rem(10)}`
+                            margin: ` 0 ${px2rem(10)}`,
+                            fontSize: `${px2rem(12)}`,
                           }}>
                             {singleCart.length}
                           </span>
                           <AddOutline
                             onClick={(e) => changeGoodNum(e, 'add', item.id)}
+                            style={{  
+                              fontSize: `${px2rem(12)}`,
+                            }}
                           />
                           <span style={{
                             color: 'gray',
-                            marginLeft: `${px2rem(15)}`
+                            marginLeft: `${px2rem(15)}`,
+                            fontSize: `${px2rem(12)}`,
+
                           }}>
                             (库存{3925 - item.num}件)
                           </span>

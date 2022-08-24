@@ -1,12 +1,12 @@
 import React, { useState, useEffect, memo } from 'react'
-import { MarketWrapper,EnterLoading } from './style'
+import { MarketWrapper, EnterLoading } from './style'
 import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import Swiper from 'swiper'
 import { actionCreators } from './store/index'
 import { rootState } from '@/store'
-import { lazyload } from '@/utils'
+import { lazyload, throttle } from '@/utils'
 import Loading from '@/components/common/loading/index'
 import loadingPic from '@/assets/images/cartDetails/loading.gif'
 import { InfiniteScroll, List } from 'antd-mobile'
@@ -34,10 +34,7 @@ const Market: React.FC<MarketProps> = (props) => {
     const backTop = () => {
         window.scrollTo(0, 0)
     }
-    window.addEventListener('scroll', function () {
-        lazyload(".list-content-box img")
-
-    })
+    window.onscroll = throttle(lazyload.bind(null, ".list-content-box img"), 100)
     useEffect(() => {
         getGoodsListDispatch()
     }, [])
@@ -172,7 +169,7 @@ const Market: React.FC<MarketProps> = (props) => {
                     <div className="mask"></div>
                     <ul className='goods-list'>
                         {
-                           data.map((item, index) => {
+                            data.map((item, index) => {
                                 return <div
                                     className='list'
                                     key={index + item.price}

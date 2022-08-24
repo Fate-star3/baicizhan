@@ -4,7 +4,7 @@ import { px2rem } from '@/assets/global-style'
 export const HomeListWrapper = styled.div`
    .list {
     display:flex;
-    width: ${px2rem(380)};
+    width: ${px2rem(360)};
     height:${px2rem(100)};
     margin: 0 auto;
     align-items: center;

@@ -37,7 +37,11 @@ export const MarketWrapper = styled.div`
         align-items:center;
         justify-content: space-evenly;
         .iconfont {
-            padding:${px2rem(10)};
+                 padding:${px2rem(10)};
+                &::before {
+                    font-size: ${px2rem(10)};
+                }
+            
         }
         .market-search-list-content-box {
             width: ${px2rem(250)};
@@ -48,11 +52,17 @@ export const MarketWrapper = styled.div`
             border:none;
             outline:none;
             background-color: inherit;
+            font-size: ${px2rem(10)};
+
         }
         }
         .icon-wode2,.icon-24gl-headset {
-            font-size:${px2rem(20)};
             margin-left: ${px2rem(10)};
+         
+                &::before {
+                    font-size: ${px2rem(12)};
+                }
+            
         }
     }
 
@@ -81,9 +91,13 @@ export const MarketWrapper = styled.div`
             align-items: center;
             justify-content:space-around;
             flex-direction:column;
+            span {
+                     font-size:${px2rem(16)};
+                    }
             .list {
                 width: ${px2rem(70)};
                 height: ${px2rem(70)};
+                
             }
             .list-v1{
                     background:url('/src/assets/images/market/icon1.png') no-repeat;
@@ -183,11 +197,12 @@ export const MarketWrapper = styled.div`
     .list {
         position:relative;
         z-index: 999;
-        width: 45%;
+        width: 48%;
         margin: ${px2rem(10)} auto;
         border-radius:${px2rem(10)};
         background-color: #fff;
         box-sizing:border-box;
+      
 }
 .list-content{
  display: flex;
@@ -208,7 +223,7 @@ export const MarketWrapper = styled.div`
 
 }
 img {
-  width: ${px2rem(175)};
+  width: 100%;
   height: ${px2rem(180)};
 }
 .list-content-text {
@@ -260,6 +275,11 @@ del {
             font-size: 1.2rem;
             z-index:999;
             background-color: #fff;
+            .iconfont {
+                &::before {
+                    font-size: ${px2rem(12)};
+                }
+            }
         }
         .cart-fix {
             width:2.27rem;
@@ -273,6 +293,11 @@ del {
             font-size: 1.2rem;
             z-index:999;
             background-color: #fff;
+            .iconfont {
+                &::before {
+                    font-size: ${px2rem(12)};
+                }
+            }
             .cart-content-icon {
                     width: 8vw;
                     height: 8vw;

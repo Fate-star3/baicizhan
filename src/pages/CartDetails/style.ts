@@ -61,7 +61,12 @@ export const Wrapper = styled.div`
 
                 }
                 .icon-aixin {
-                    float:right;
+                    float:right;                         
+                &::before {
+                    font-size:${px2rem(10)};
+                }
+                
+            
                 }
             }
             .message {
@@ -97,7 +102,7 @@ export const Wrapper = styled.div`
         }
         .goods-bd {
             margin: 0 auto;
-            width: ${px2rem(380)};
+            width: ${px2rem(370)};
             height: ${px2rem(150)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
@@ -187,7 +192,7 @@ export const Wrapper = styled.div`
         }
         .goods-ft {
             margin: 0 auto;
-            width: ${px2rem(380)};
+            width: ${px2rem(370)};
             height: ${px2rem(50)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
@@ -209,7 +214,7 @@ export const Wrapper = styled.div`
         }
         .goods-comment {
             margin: 0 auto;
-            width: ${px2rem(380)};
+            width: ${px2rem(370)};
             height: ${px2rem(120)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
@@ -259,7 +264,7 @@ export const Wrapper = styled.div`
     }
     .goods-like {
             margin: 0 auto;
-            width: ${px2rem(380)};
+            width: ${px2rem(370)};
             height: ${px2rem(450)};
             margin-top:${px2rem(10)};
             background-color: #fff;
@@ -280,7 +285,7 @@ export const Wrapper = styled.div`
                      position:relative;
                      width: ${px2rem(116)};
                      height: ${px2rem(180)};
-                     padding:0 0 ${px2rem(10) }${px2rem(10)};
+                     /* padding:0 0 ${px2rem(10) }${px2rem(10)}; */
                 .boxv2-txt {
                          font-size: ${px2rem(15)};
                     }
@@ -311,12 +316,12 @@ export const Wrapper = styled.div`
     }
     .goods-introduce {
             margin: 0 auto;
-            width: ${px2rem(380)};
+            width: ${px2rem(370)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
             border-radius:${px2rem(10)};
             vertical-align:top;
-            margin-bottom: 60px;
+            margin-bottom: ${px2rem(60)};
         img {
             vertical-align:top;
             width: 100%;
@@ -328,7 +333,7 @@ export const Wrapper = styled.div`
         left: 0;
         bottom: 0;
         width: 100%;
-        height: 60px;
+        height: ${px2rem(60)};
         background-color: #fff;
         .footer {
             display:flex;

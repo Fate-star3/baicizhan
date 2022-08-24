@@ -24,8 +24,11 @@ export const Wrapper = styled.div`
             margin:0 ${px2rem(10)};
             vertical-align:middle;
             .iconfont {
-               
                 padding:0 ${px2rem(10)};
+                &::before {
+                    font-size:${px2rem(10)};
+                }
+                
             }
 
         input{
@@ -34,6 +37,7 @@ export const Wrapper = styled.div`
             outline:none;
             border:0;
             padding: 0;
+            font-size:${px2rem(14)};
 
         }
        
@@ -42,6 +46,7 @@ export const Wrapper = styled.div`
       .right {
             font-size:${px2rem(18)};
             color: #000;
+            
         }
       
     }

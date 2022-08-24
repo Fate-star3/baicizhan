@@ -1,10 +1,7 @@
-import init from './rem'
 export const px2rem = (px: number): string => {
-  const fontSize = init()
-  // console.log(fontSize);
   
   return `
-      ${px / fontSize}rem
+      ${px / 20}rem
     `
 };
 
