@@ -10,13 +10,6 @@ export const Wrapper = styled.div`
             align-items: center;
             justify-content: space-between;
             padding:${px2rem(10)};
-            .iconfont {
-                padding:0 ${px2rem(10)};
-                &::before {
-                    font-size:${px2rem(12)};
-                }
-                
-            }
             h1 {
                 font-size:${px2rem(18)};
             }

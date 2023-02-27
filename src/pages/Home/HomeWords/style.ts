@@ -40,7 +40,7 @@ img {
   background-color: #fff;
 }
 .word-mid-box {
-  width: ${px2rem(260)};
+  width: ${px2rem(280)};
   display: flex;
   justify-content: space-between;
   margin-top: ${px2rem(11)};
@@ -69,7 +69,7 @@ img {
 }
 /* 进度条 */
 .word-mid-range {
-  width: ${px2rem(270)};
+  width: ${px2rem(280)};
   display: flex;
   margin-top: ${px2rem(10)};
 }
@@ -82,7 +82,7 @@ img {
 }
 .word-mid-rangev3 {
   display: block;
-  width: ${px2rem(260)};
+  width: ${px2rem(270)};
   height: ${px2rem(6)};
   background: gray;
   border-radius: 0rem ${px2rem(2)} ${px2rem(2)} 0rem;
@@ -94,10 +94,6 @@ img {
   font-size: ${px2rem(14)};
   color: #d1d1d2;
   margin-top: ${px2rem(6)};
-    span {
-      padding-right: 10px;
-    }
-  
 }
 .word-dialog {
   width:${px2rem(155)};
@@ -148,8 +144,6 @@ img {
   font-weight: 600;
   margin-left: ${px2rem(22)};
   margin-right: ${px2rem(88)};
-  font-size: ${px2rem(16)};
-
 }
 .plan-top-right {
   font-size: ${px2rem(14)};
@@ -209,8 +203,6 @@ img {
   line-height: ${px2rem(60)};
   margin: auto;
   margin-top: ${px2rem(11)};
-  font-size: ${px2rem(20)};
-
 }
 
 }

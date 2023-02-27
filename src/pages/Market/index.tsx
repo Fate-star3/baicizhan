@@ -6,7 +6,7 @@ import { Dispatch } from 'redux'
 import Swiper from 'swiper'
 import { actionCreators } from './store/index'
 import { rootState } from '@/store'
-import { lazyload, throttle } from '@/utils'
+import { lazyload } from '@/utils'
 import Loading from '@/components/common/loading/index'
 import loadingPic from '@/assets/images/cartDetails/loading.gif'
 import { InfiniteScroll, List } from 'antd-mobile'
@@ -22,6 +22,8 @@ const Market: React.FC<MarketProps> = (props) => {
     const { loading, goodsList } = props
     const { getGoodsListDispatch } = props
     const navigate = useNavigate()
+
+
     const [toTop, setToTop] = useState('none')
     const [data = goodsList, setData] = useState<any[]>([])
     const [hasMore, setHasMore] = useState(true)
@@ -34,7 +36,10 @@ const Market: React.FC<MarketProps> = (props) => {
     const backTop = () => {
         window.scrollTo(0, 0)
     }
-    window.onscroll = throttle(lazyload.bind(null, ".list-content-box img"), 100)
+    window.addEventListener('scroll', function () {
+        lazyload(".list-content-box img")
+
+    })
     useEffect(() => {
         getGoodsListDispatch()
     }, [])
@@ -173,7 +178,7 @@ const Market: React.FC<MarketProps> = (props) => {
                                 return <div
                                     className='list'
                                     key={index + item.price}
-                                    onClick={() => navigate('/cartDetails/' + item.id)}
+                                    onClick={() => navigate(`/cartDetails/${item.id}`)}
                                 >
                                     <div className="list-content">
                                         <div className="list-content-box">

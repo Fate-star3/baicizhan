@@ -26,18 +26,23 @@ const Home: React.FC<HomeProps> = (props) => {
         getHomeInfoDispatch()
     }, [])
     return (
-        <HoemWrapper>
-            <HomeSearch />
-                <HomeWords />
-                <HomeList />
-                <HomeInfo homeinfo={homeinfo} />
-            {
-                loading ?
-                    <EnterLoading>
-                        <Loading></Loading>
-                    </EnterLoading> : null
-            }
-        </HoemWrapper>
+
+
+        loading ? <EnterLoading>
+            < Loading />
+        </EnterLoading >
+            :
+            <>
+                <HoemWrapper>
+                    <HomeSearch />
+                    <HomeWords />
+                    <HomeList />
+                    <HomeInfo homeinfo={homeinfo} />
+
+                </HoemWrapper>
+            </>
+
+
     )
 }
 

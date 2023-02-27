@@ -19,7 +19,6 @@ export const changeGoodsNumAction = (data:any[]) => ({
     data: data
 })
 
-
 export const getCartDetail= () => {
     return (dispatch: Dispatch) => {
         getCartDetailRequest().then(data => {

@@ -9,8 +9,6 @@ import { Dispatch } from 'redux'
 import { actionCreators } from './store'
 import Loading from '@/components/common/loading/index'
 import classnames from 'classnames'
-import { px2rem } from '@/assets/global-style'
-
 // 商品选中的图片
 import checkedImg from '@/assets/images/cart/shopping_check.png'
 import checkNormalImg from '@/assets/images/cart/shopping_checkNormal.png'
@@ -175,18 +173,11 @@ const Cart: React.FC<CartProps> = (props) => {
                                                         <MinusOutline
                                                             className={classnames({ forbid: item.num <= 0 }, 'reduce')}
                                                             onClick={(e) => changeGoodNum(e, 'reduce', item.id)}
-                                                            style={{
-                                                                fontSize: `${px2rem(12)}`,
-                                                            }}
                                                         />
-                                                        <span style={{fontSize: `${px2rem(12)}`}}>{item.num}</span>
+                                                        <span>{item.num}</span>
                                                         <AddOutline
                                                             className='add'
-                                                            onClick={(e) => changeGoodNum(e, 'add', item.id)} 
-                                                            style={{
-                                                                fontSize: `${px2rem(12)}`,
-                                                            }}
-                                                            />
+                                                            onClick={(e) => changeGoodNum(e, 'add', item.id)} />
                                                     </div>
 
                                                 </div>

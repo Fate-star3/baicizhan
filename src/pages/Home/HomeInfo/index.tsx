@@ -8,7 +8,7 @@ interface HomeInfoProps {
 
 const HomeInfo: React.FC<HomeInfoProps> = (props) => {
     const { homeinfo } = props
-    // console.log(homeinfo);
+    console.log(homeinfo);
     
     return (
         <HomeInfoWrapper>

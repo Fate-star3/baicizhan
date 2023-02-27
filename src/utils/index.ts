@@ -62,9 +62,9 @@ export const isPathPartlyExisted = (path: string) => {
     // return false
 }
 
-// 懒加载
+
 export const lazyload = (str: string) => {
-    let imgLists = document.querySelectorAll(str)
+    let imgLists= document.querySelectorAll(str)
     let length = imgLists.length
     let timer: any
 
@@ -73,7 +73,7 @@ export const lazyload = (str: string) => {
         return timer = setTimeout(() => {
             for (let i = 0; i < length; i++) {
 
-                let rect= imgLists[i].getBoundingClientRect()
+                let rect = imgLists[i].getBoundingClientRect()
 
                 // 当图片刚出现，才把它加载出来 
                 if (rect.top < window.innerHeight) {
@@ -84,7 +84,7 @@ export const lazyload = (str: string) => {
                 }
             }
             timer = null
-        }, 100)
+        },100)
 
     }
     imgLazyLoad()
@@ -92,8 +92,6 @@ export const lazyload = (str: string) => {
 }
 
 
-
-// 防抖
 export const debounce = (func: { apply: (arg1: any, arg2: any) => void }, delay: number | undefined) => {
     let timer: any;
     return function (this: any, ...args: any) {
@@ -107,23 +105,19 @@ export const debounce = (func: { apply: (arg1: any, arg2: any) => void }, delay:
     };
 };
 
-// 函数节流的实现;
-export function throttle(fn: { apply: (arg1: any, arg2: any) => void }, delay: number) {
-    // 现在的事件
-    let curTime = Date.now();
+// function debounce (fn: { apply: (arg0: any, arg1: any) => void }, t: number) {
+//     let timeId: any = null
+//     const delay = t || 500
+//     return function (this: any, ...args: any) {
+//       if (timeId) {
+//         clearTimeout(timeId)
+//       }
+//       timeId = setTimeout(() => {
+//         timeId = null
+//         fn.apply(this, args)
+//       }, delay)
+//     }
+//   }
 
-    return function (this: any) {
-        let context = this,
-            args = arguments,
-            // 当前时间
-            nowTime = Date.now();
-
-        // 如果两次时间间隔超过了指定时间，则执行函数。
-        if (nowTime - curTime >= delay) {
-            curTime = Date.now();
-            return fn.apply(context, args);
-        }
-    };
-}
 
 

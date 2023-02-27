@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react'
 import { Wrapper, EnterLoading } from './style'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Swiper from 'swiper'
 import Loading from '@/components/common/loading/index'
 import { actionCreators } from './store/index'
@@ -11,7 +11,7 @@ import { Button, Popup } from 'antd-mobile'
 import { AddOutline, MinusOutline } from 'antd-mobile-icons'
 import { px2rem } from '@/assets/global-style'
 import { Link } from 'react-router-dom'
-import { lazyload, throttle } from '@/utils'
+import { lazyload } from '@/utils'
 import loadingPic from '@/assets/images/cartDetails/loading.gif'
 
 interface CartDetailProps {
@@ -26,7 +26,9 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
   const { loading, cartDetail, singleCart } = props
   const { getCartDetailDispatch, changeGoodsNumDispatch } = props
   const navigate = useNavigate()
+  const { id } = useParams()
   const [visible, setVisible] = useState(false)
+  let data: any[] = []
   // console.log(cartDetail);
   // console.log(singleCart);
 
@@ -35,8 +37,17 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
     getCartDetailDispatch()
 
   }, [])
-  window.onscroll = throttle(lazyload.bind(null, ".goods-introduce img"), 500)
+  useEffect(() => {
+    window.addEventListener('scroll', function () {
+      lazyload(".goods-introduce img")
 
+    })
+  }, [])
+
+
+  // cartDetail.length>0 && cartDetail[0].num == JSON.parse(window.sessionStorage.getItem('datails') as string)[0].num
+  //   ? JSON.parse(window.sessionStorage.getItem('datails') as string)
+  //   : cartDetail && window.sessionStorage.setItem('datails', JSON.stringify(cartDetail))
 
   useEffect(() => {
     // 轮播图挂载
@@ -62,10 +73,20 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
     }
     changeGoodsNumDispatch(data)
   }
+  // console.log(cartDetail, id);
+
+  data = cartDetail.filter(item => {
+    if (item.id == id) {
+      console.log(item.id, id);
+      console.log(item);
+      return item
+    }
+  });
+
   return (
     <Wrapper>
       {
-        cartDetail.map(item => {
+        data && data.map(item => {
           return <div className="goods" key={item.id}>
             <div className="goods-back">
               <i className='iconfont icon-youjiantou3' onClick={() => navigate('/market')}></i>
@@ -168,9 +189,7 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                       <div className="boxv2">
                         <img src={"/src/assets/images/cartDetails/" + item.imgsrc} alt="" />
                         <p className="boxv2-txt">{item.title}</p>
-                        <div>
-                          <span className="boxv2-price"><span className="boxv2-icon">{item.icon}</span>{item.price}</span>
-                        </div>
+                        <span className="boxv2-price"><span className="boxv2-icon">{item.icon}</span>{item.price}</span>
                       </div>
                     </div>
 
@@ -270,16 +289,12 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                           <span style={{
                             padding: `${px2rem(5)} ${px2rem(10)}`,
                             backgroundColor: '#eee',
-                            marginRight: `${px2rem(10)}`,
-                            fontSize: `${px2rem(12)}`,
-
+                            marginRight: `${px2rem(10)}`
                           }}>四级大全套：词汇+真题+听力</span>
                           <span
                             style={{
                               padding: `${px2rem(5)} ${px2rem(10)}`,
-                              backgroundColor: '#eee',
-                            fontSize: `${px2rem(12)}`,
-
+                              backgroundColor: '#eee'
                             }}>四级高分词汇</span>
                         </div>
                         <div style={{
@@ -291,42 +306,31 @@ const CartDetails: React.FC<CartDetailProps> = (props) => {
                             marginBottom: `${px2rem(15)}`
                           }}>数量</h1>
                           {
-                            singleCart.length > 0 ?
+                            item.num > 0 ?
                               <MinusOutline
                                 onClick={(e) => changeGoodNum(e, 'reduce', item.id)}
-                                style={{  
-                                  fontSize: `${px2rem(12)}`,
-                                }}
                               />
                               :
                               <MinusOutline
                                 onClick={(e) => changeGoodNum(e, 'reduce', item.id)}
                                 style={{
-                                  pointerEvents: "none",
-                                  fontSize: `${px2rem(12)}`,
-
+                                  pointerEvents: "none"
                                 }}
                               />
                           }
                           <span style={{
                             padding: `${px2rem(5)} ${px2rem(10)}`,
                             backgroundColor: '#eee',
-                            margin: ` 0 ${px2rem(10)}`,
-                            fontSize: `${px2rem(12)}`,
+                            margin: ` 0 ${px2rem(10)}`
                           }}>
-                            {singleCart.length}
+                            {item.num}
                           </span>
                           <AddOutline
                             onClick={(e) => changeGoodNum(e, 'add', item.id)}
-                            style={{  
-                              fontSize: `${px2rem(12)}`,
-                            }}
                           />
                           <span style={{
                             color: 'gray',
-                            marginLeft: `${px2rem(15)}`,
-                            fontSize: `${px2rem(12)}`,
-
+                            marginLeft: `${px2rem(15)}`
                           }}>
                             (库存{3925 - item.num}件)
                           </span>

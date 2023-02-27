@@ -61,12 +61,7 @@ export const Wrapper = styled.div`
 
                 }
                 .icon-aixin {
-                    float:right;                         
-                &::before {
-                    font-size:${px2rem(10)};
-                }
-                
-            
+                    float:right;
                 }
             }
             .message {
@@ -102,7 +97,7 @@ export const Wrapper = styled.div`
         }
         .goods-bd {
             margin: 0 auto;
-            width: ${px2rem(370)};
+            width: ${px2rem(375)};
             height: ${px2rem(150)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
@@ -192,7 +187,7 @@ export const Wrapper = styled.div`
         }
         .goods-ft {
             margin: 0 auto;
-            width: ${px2rem(370)};
+            width: ${px2rem(375)};
             height: ${px2rem(50)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
@@ -214,7 +209,7 @@ export const Wrapper = styled.div`
         }
         .goods-comment {
             margin: 0 auto;
-            width: ${px2rem(370)};
+            width: ${px2rem(375)};
             height: ${px2rem(120)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
@@ -264,8 +259,8 @@ export const Wrapper = styled.div`
     }
     .goods-like {
             margin: 0 auto;
-            width: ${px2rem(370)};
-            height: ${px2rem(450)};
+            width: ${px2rem(375)};
+            /* height: ${px2rem(450)}; */
             margin-top:${px2rem(10)};
             background-color: #fff;
             border-radius:${px2rem(5)};
@@ -279,15 +274,17 @@ export const Wrapper = styled.div`
          .like-content{
                  display: flex;
                  flex-wrap:wrap ;
-                 justify-content: space-between;
+                 justify-content: space-around;
                  background-color: #fff;
+                 
             .boxv2 {
                      position:relative;
                      width: ${px2rem(116)};
-                     height: ${px2rem(180)};
-                     /* padding:0 0 ${px2rem(10) }${px2rem(10)}; */
+                     height: ${px2rem(200)};
+                     padding:0 0 ${px2rem(10)}${px2rem(10)};
                 .boxv2-txt {
-                         font-size: ${px2rem(15)};
+                         font-size: ${px2rem(14)};
+                         padding-top: 5px;
                     }
                     img {
                       width:${px2rem(100)};
@@ -295,7 +292,7 @@ export const Wrapper = styled.div`
                     }
                     .boxv2-price {
                         position:absolute;
-                        bottom: ${px2rem(10)};
+                        bottom: ${px2rem(20)};
                         left: ${px2rem(10)};
                       font-size: ${px2rem(20)};
                       font-weight: 600;
@@ -316,12 +313,12 @@ export const Wrapper = styled.div`
     }
     .goods-introduce {
             margin: 0 auto;
-            width: ${px2rem(370)};
+            width: ${px2rem(375)};
             margin-top: ${px2rem(10)};
             background-color: #fff;
             border-radius:${px2rem(10)};
             vertical-align:top;
-            margin-bottom: ${px2rem(60)};
+            margin-bottom: 60px;
         img {
             vertical-align:top;
             width: 100%;
@@ -333,7 +330,7 @@ export const Wrapper = styled.div`
         left: 0;
         bottom: 0;
         width: 100%;
-        height: ${px2rem(60)};
+        height: 60px;
         background-color: #fff;
         .footer {
             display:flex;
@@ -418,7 +415,7 @@ export const Wrapper = styled.div`
         }
     }
     .forbid {
-             pointer-events:none;
-             }
+    pointer-events:none;
+    }
     
 `

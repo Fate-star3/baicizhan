@@ -21,13 +21,13 @@ export async function mockRequest() {
     },
     {
         "id": 2,
-        "title": "2022年大学英语四级考试大全套",
+        "title": "2022年大学英语六级考试大全套",
         "text": "包邮领加油券,开学必备",
-        "price": "49",
+        "price": "89",
         "fuhao": "￥",
-        "del": "39",
+        "del": "69",
         "imageSrc": "goods2.jpg",
-        "num": "1.4万人付款"
+        "num": "0.6万人付款"
     },
     {
         "id": 3,

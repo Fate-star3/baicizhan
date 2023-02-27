@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
 
     .cart-content {
             margin: 0 auto;
-            width: ${px2rem(370)};
+            width: ${px2rem(375)};
             /* height: ${px2rem(180)}; */
             margin-top: ${px2rem(54)};
             border-radius:${px2rem(5)};
@@ -101,11 +101,9 @@ export const Wrapper = styled.div`
                     .circle {
                         padding: ${px2rem(2)} ${px2rem(5)} ;
                         display:inline-block;
-                        background-color: #e6e9ee;              
-                        font-size: ${px2rem(12)};            
+                        background-color: #e6e9ee;
                         border-radius:50%;
                         margin-left: ${px2rem(5)};
-
                     }
                    }
                 }
@@ -158,9 +156,9 @@ export const Wrapper = styled.div`
                                     width: ${px2rem(85)};
                                     span {
                                         display:inline-block;
-                                        width: ${px2rem(30)};
-                                        height: ${px2rem(20)};
-                                        line-height: ${px2rem(20)};
+                                        width: 30px;
+                                        height: 20px;
+                                        line-height: 20px;
                                         text-align: center;
                                         background-color: #eee;
                                     }

@@ -7,9 +7,8 @@ const composeEnhancers =
     
 const store = createStore(reducers, 
     composeEnhancers(applyMiddleware(thunk as ThunkMiddleware)));
-    
-// Infer the `RootState` and `AppDispatch` types from the store itself 
+// Infer the `RootState` and `AppDispatch` types from the store itself
 
 export type rootState = ReturnType<typeof reducers>
 
-export default store; 
+export default store;
