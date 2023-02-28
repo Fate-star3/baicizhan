@@ -10,7 +10,7 @@ export default defineConfig({
     port: 3011,
     open: true,
     proxy: {
-      '^/api/.*': {
+      '^/server/.*': {
         target: 'http://127.0.0.1:3030',
         secure: false,
         changeOrigin: true,

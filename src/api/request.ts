@@ -2,13 +2,13 @@ import { axiosInstance } from "./config";
 
 
 export const getHomeInfoRequest =
-    () => axiosInstance.get('api/info')
+    () => axiosInstance.get('server/info')
 
 export const getGoodsListRequest =
-    () => axiosInstance.get('api/goodsList')
+    () => axiosInstance.get('server/goodsList')
 
 export const getCartDetailRequest =
-    () => axiosInstance.get('api/cart/detail')
+    () => axiosInstance.get('server/cart/detail')
 
 export const getCartListRequest =
     () => Promise.resolve({

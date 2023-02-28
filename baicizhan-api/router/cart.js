@@ -8,5 +8,5 @@ router.get('/detail', async (ctx, next) => {
     }
 })
 
-router.use('/api/cart',router.routes())
+router.use('/server/cart',router.routes())
 module.exports = router.routes()

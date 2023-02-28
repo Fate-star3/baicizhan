@@ -6,5 +6,5 @@ router.get('/info', async (ctx, next) => {
         data:data
     }
 })
-router.use('/api',router.routes())
+router.use('/server',router.routes())
 module.exports = router.routes()
