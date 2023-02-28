@@ -11,7 +11,7 @@ const cartRouter = require('./router/cart.js')
 
 // 挂载 中间件的挂载有依赖关系 顺序要合理
 app.use(cors())
-app.use(mainRouter)     
+app.use(mainRouter)
 app.use(goodsRouter)
 app.use(cartRouter)
 

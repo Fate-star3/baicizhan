@@ -3,8 +3,8 @@ const data = require('../data/goods-list.json')
 
 router.get('/goodsList', async (ctx, next) => {
     ctx.body = {
-        data:data
+        data: data
     }
 })
-
+router.use('/api', router.routes())
 module.exports = router.routes()

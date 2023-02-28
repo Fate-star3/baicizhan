@@ -2,15 +2,15 @@ import { axiosInstance } from "./config";
 
 
 export const getHomeInfoRequest =
-    () => axiosInstance.get('http://127.0.0.1:3030/info')
+    () => axiosInstance.get('api/info')
 
 export const getGoodsListRequest =
-    () => axiosInstance.get('http://127.0.0.1:3030/goodsList')
+    () => axiosInstance.get('api/goodsList')
 
 export const getCartDetailRequest =
-    () => axiosInstance.get('http://127.0.0.1:3030/cart/detail')
+    () => axiosInstance.get('api/cart/detail')
 
 export const getCartListRequest =
     () => Promise.resolve({
-        data:JSON.parse(window.localStorage.getItem('data') as string)
+        data: JSON.parse(window.localStorage.getItem('data') as string)
     })
