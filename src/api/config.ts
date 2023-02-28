@@ -1,6 +1,6 @@
 //配置对象
 import axios from 'axios'
-const baseUrl = "http://localhost:3030"
+// const baseUrl = "http://localhost:3030"
 
 
 
@@ -11,20 +11,13 @@ const baseUrl = "http://localhost:3030"
 //     headers: {'X-Custom-Header': 'foobar'}
 //   });
 export const axiosInstance = axios.create({
-    baseURL: baseUrl,
+    // baseURL: baseUrl,
     method: "get",
     // `withCredentials` 表示跨域请求时是否需要使用凭证
     withCredentials: false, // default
     // `responseType` 表示服务器响应的数据类型，可以是 'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
     responseType: 'json', // default
-    proxy: {
-        host: '127.0.0.1',
-        port: 3000,
-        auth: {
-            username: 'zs',
-            password: '123'
-        }
-    },
+
 })
 
 

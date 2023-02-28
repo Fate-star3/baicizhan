@@ -104,7 +104,10 @@ export const debounce = (func: { apply: (arg1: any, arg2: any) => void }, delay:
         }, delay);
     };
 };
-
+// import.meta.url 是一个 ESM 的原生功能，会暴露当前模块的 URL。将它与原生的 URL 构造器 组合使用，在一个 JavaScript 模块中，通过相对路径我们就能得到一个被完整解析的静态资源 URL：
+export function getImageUrl(name: any) {
+    return new URL(`../assets/images/${name}`, import.meta.url).href
+}
 // function debounce (fn: { apply: (arg0: any, arg1: any) => void }, t: number) {
 //     let timeId: any = null
 //     const delay = t || 500
