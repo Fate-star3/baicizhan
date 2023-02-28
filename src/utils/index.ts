@@ -64,7 +64,7 @@ export const isPathPartlyExisted = (path: string) => {
 
 
 export const lazyload = (str: string) => {
-    let imgLists= document.querySelectorAll(str)
+    let imgLists = document.querySelectorAll(str) as any
     let length = imgLists.length
     let timer: any
 
@@ -84,7 +84,7 @@ export const lazyload = (str: string) => {
                 }
             }
             timer = null
-        },100)
+        }, 100)
 
     }
     imgLazyLoad()

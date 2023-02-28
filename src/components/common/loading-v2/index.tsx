@@ -21,7 +21,7 @@ const Loading = styled.div`
     font-size: 10px;
     >div{
       display: inline-block;
-      background-color: ${style["theme-color"]};
+      background-color: ${style["theme_color"]};
       height: 100%;
       width: 1px;
       margin-right:2px;
